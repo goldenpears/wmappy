@@ -9,7 +9,7 @@ I have something for you, weirdo
 
 ## this is how we do it
 
-- [x] Download a list of countries and cities from https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json
+- [x]~~Download a list of countries and cities from [there](https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json)~~
 - [ ] Parse that list into a local database.
 - [ ] Create a country selector (dropdown or picker) which is populated from the local database.
 - [ ] Show a list of cities of the selected country.
