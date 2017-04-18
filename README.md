@@ -12,16 +12,20 @@ I have something for you, weirdo
 - [x] ~~Download a list of countries and cities from [there](https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json)~~
 - [ ] Parse that list into a local database ~~(for now it parses and shows straight into recycle view, right after request via HTTP)~~
 - [ ] ~~Create a country selector (dropdown or picker)~~ which is populated from the local database.
-- [x] Show a list of cities of the selected country.
+- [x] ~~Show a list of cities of the selected country.~~
 - [ ] Upon selecting a city from the list, fetch info about it and display it on a separate screen. For fetching city info use Wikipedia search service http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch
 
 ## any third-party libraries and frameworks?
 not yet!
 
-## screenshots?
-be patient
+## screenshots
+![screenshots](img/wmappy.png)
+`splash screen` ⭐️ 
+`main activity with countries` ⭐️ 
+`dialog with cities!` ⭐️ 
+and another one in process ⭐️ 
 
-## formaly it is
+## formally it is
 Example of implementing:
 - parsing `JSON` via `HTTP`
 - showing result as `recycle view`
