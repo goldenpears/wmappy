@@ -1,10 +1,13 @@
 package com.locovna.wmappy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,13 +40,28 @@ public class MainActivity extends AppCompatActivity {
         // Find the current country that was clicked on
         Country currentCountry = mAdapter.getItem(position);
         ArrayList cities = currentCountry.getCities();
-
-        Toast.makeText(getApplicationContext(), "Cities of " + currentCountry.getCountry() + ": " + cities, Toast.LENGTH_LONG).show();
+        //        Toast.makeText(getApplicationContext(), "Cities of " + currentCountry.getCountry() + ": " + cities, Toast.LENGTH_LONG).show();
+        showDialog(cities);
       }
     });
 
     CountryAsyncTask task = new CountryAsyncTask();
     task.execute(REQUEST_URL);
+  }
+
+  private void showDialog(final ArrayList cities) {
+    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, cities);
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Choose your city to explore")
+        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int id) {
+            Object checkedItem = cities.toArray()[id].toString();
+            Toast.makeText(getApplicationContext(), "some action!" + checkedItem, Toast.LENGTH_LONG).show();
+          }
+        });
+    AlertDialog dialog = builder.create();
+    dialog.show();
   }
 
   private class CountryAsyncTask extends AsyncTask<String, Void, List<Country>> {
