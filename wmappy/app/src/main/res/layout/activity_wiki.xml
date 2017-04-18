@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.locovna.wmappy.WikiActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/city_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            android:tintMode="multiply"
+            android:tint="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="16dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="48sp"
+            tools:text="London"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/city_summary"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:padding="32dp"
+        tools:text="@string/test_city_summary"/>
+
+</LinearLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">wmappy</string>
+
+    <string name="test_city_summary">London is the capital and most populous city of England and the United Kingdom. Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium (...)</string>
 </resources>
