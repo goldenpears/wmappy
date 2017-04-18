@@ -57,14 +57,15 @@ public class MainActivity extends AppCompatActivity {
         .setAdapter(adapter, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int id) {
-            Object checkedItem = cities.toArray()[id].toString().toLowerCase();
-            Toast.makeText(getApplicationContext(), "we are going to " + checkedItem + "!", Toast.LENGTH_LONG).show();
-            //            Uri wikiUri = Uri.parse("http://api.geonames.org//wikipediaSearchJSON?q=" + checkedItem + "&maxRows=10&username=demo");
+            Object currentCity = cities.toArray()[id].toString();
+            Toast.makeText(getApplicationContext(), "we are going to " + currentCity + "!", Toast.LENGTH_SHORT).show();
+            //            Uri wikiUri = Uri.parse("http://api.geonames.org//wikipediaSearchJSON?q=" + currentCity + "&maxRows=10&username=demo");
             //
             //            Intent websiteIntent = new Intent(Intent.ACTION_VIEW, wikiUri);
             //            startActivity(websiteIntent);
 
             Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+            intent.putExtra("Current city", currentCity.toString().toLowerCase());
             startActivity(intent);
           }
         });

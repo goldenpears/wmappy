@@ -54,7 +54,7 @@ public class QueryUtils {
     }
 
     // Extract relevant fields from the JSON response and create a list of {@link Countries}s
-    List<Country> countries = extractCountytDataFromJson(jsonResponse);
+    List<Country> countries = extractCountryDataFromJson(jsonResponse);
 
     // Return the list of {@link Countries}
     return countries;
@@ -152,7 +152,7 @@ public class QueryUtils {
   }
 
 
-  public static List<Country> extractCountytDataFromJson(String countriesJson) {
+  public static List<Country> extractCountryDataFromJson(String countriesJson) {
     if (TextUtils.isEmpty(countriesJson)) {
       return null;
     }
@@ -165,7 +165,7 @@ public class QueryUtils {
       // parse every key in JSONObject
       Iterator<String> keys = obj.keys();
       while (keys.hasNext()) {
-        Log.v(LOG_TAG, "keys: " + keys);
+        //        Log.v(LOG_TAG, "keys: " + keys);
         String countryName = (String) keys.next();
         JSONArray cities = obj.getJSONArray(countryName);
 
@@ -180,7 +180,7 @@ public class QueryUtils {
 
         Country country = new Country(countryName, citiesArray);
         countries.add(country);
-        //        Log.v(LOG_TAG, country.getCountry() + country.getCities());
+        // Log.v(LOG_TAG, country.getCountry() + country.getCities());
       }
 
     } catch (JSONException e) {
@@ -197,9 +197,41 @@ public class QueryUtils {
 
     try {
       JSONObject obj = new JSONObject(cityJSON);
-      Log.v(LOG_TAG, "hello!!!!!!!!!!");
+
+      if (!obj.has("geonames")) {
+        city.setCityName("Mystery town");
+        city.setCitySummary("Something wrong with this city! Try another one");
+        city.setCityPhoto("photo?");
+      } else {
+        JSONArray array = obj.getJSONArray("geonames");
+        JSONObject cityObj = array.getJSONObject(0);
+
+        if (!cityObj.has("title")) {
+          city.setCityName("Mystery town");
+          city.setCitySummary("There is no summary for this mysterious town");
+        } else {
+          String cityName = cityObj.getString("title");
+          city.setCityName(cityName);
+        }
+        if (!cityObj.has("summary")) {
+          city.setCitySummary("There is no summary for this mysterious town");
+        } else {
+          String citySummary = cityObj.getString("summary");
+          city.setCitySummary(citySummary);
+        }
+
+        if (!cityObj.has("thumbnailImg")) {
+          city.setCityPhoto("photo?");
+        } else {
+          String cityPhoto = cityObj.getString("thumbnailImg");
+          city.setCityPhoto(cityPhoto);
+        }
+      }
+
+      Log.v(LOG_TAG, "city is " + city.getCityName() + city.getCitySummary() + city.getCityPhoto());
     } catch (JSONException e) {
       Log.e(LOG_TAG, "Problem parsing the countries JSON results", e);
+
     }
     return city;
   }

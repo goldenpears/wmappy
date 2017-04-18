@@ -1,19 +1,17 @@
 package com.locovna.wmappy.model;
 
-import android.media.Image;
-
 public class City {
 
   private String cityName;
   private String citySummary;
-  private Image cityPhoto;
+  private String cityPhoto;
 
   public City(){}
   public City(String name, String summary){
     cityName = name;
     citySummary = summary;
   }
-  public City(String name, String summary, Image photo){
+  public City(String name, String summary, String photo){
     cityName = name;
     citySummary = summary;
     cityPhoto = photo;
@@ -35,11 +33,11 @@ public class City {
     this.citySummary = citySummary;
   }
 
-  public Image getCityPhoto() {
+  public String getCityPhoto() {
     return cityPhoto;
   }
 
-  public void setCityPhoto(Image cityPhoto) {
+  public void setCityPhoto(String cityPhoto) {
     this.cityPhoto = cityPhoto;
   }
 }

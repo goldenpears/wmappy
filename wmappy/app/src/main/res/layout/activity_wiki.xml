@@ -18,22 +18,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorAccent"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorAccent"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
-            android:tintMode="multiply"
-            android:tint="@color/colorPrimaryDark"/>
+            android:tint="@color/colorPrimaryDark"
+            android:tintMode="multiply"/>
 
-        <TextView
-            android:id="@+id/city_name"
-            android:layout_width="match_parent"
+        <ScrollView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="16dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="48sp"
-            tools:text="London"/>
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/city_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="16dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="48sp"
+                tools:text="London"/>
+        </ScrollView>
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/city_summary"
