@@ -3,7 +3,10 @@ package com.locovna.wmappy;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.locovna.wmappy.controller.CountryAdapter;
 import com.locovna.wmappy.controller.QueryUtils;
@@ -28,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
     mAdapter = new CountryAdapter(this, new ArrayList<Country>());
     countriesListView.setAdapter(mAdapter);
 
+    countriesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        // Find the current country that was clicked on
+        Country currentCountry = mAdapter.getItem(position);
+        ArrayList cities = currentCountry.getCities();
+
+        Toast.makeText(getApplicationContext(), "Cities of " + currentCountry.getCountry() + ": " + cities, Toast.LENGTH_LONG).show();
+      }
+    });
+
     CountryAsyncTask task = new CountryAsyncTask();
     task.execute(REQUEST_URL);
   }
@@ -46,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPostExecute(List<Country> data) {
-      // Clear the adapter of previous earthquake data
+      // Clear the adapter of previous countries data
       mAdapter.clear();
 
-      // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+      // If there is a valid list of {@link Countries}s, then add them to the adapter's
       // data set. This will trigger the ListView to update.
       if (data != null && !data.isEmpty()) {
         mAdapter.addAll(data);
