@@ -13,7 +13,7 @@ I have something for you, weirdo
 - [ ] Parse that list into a local database ~~(for now it parses and shows straight into recycle view, right after request via HTTP)~~
 - [ ] ~~Create a country selector (dropdown or picker)~~ which is populated from the local database.
 - [x] ~~Show a list of cities of the selected country.~~
-- [ ] Upon selecting a city from the list, fetch info about it and display it on a separate screen. For fetching city info use Wikipedia search service http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch
+- [ ] Upon selecting a city from the list, fetch info about it and display it on a separate screen. For fetching city info use [Wikipedia search service](http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch)
 
 ## any third-party libraries and frameworks?
 not yet!
@@ -30,3 +30,4 @@ Example of implementing:
 - parsing `JSON` via `HTTP`
 - showing result as `recycle view`
 - displaying `dialog` using `ArrayList`
+- and `explicit intent` to `Activity` with, again, parsed `JSON`
