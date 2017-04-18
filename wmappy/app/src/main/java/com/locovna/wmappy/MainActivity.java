@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
           public void onClick(DialogInterface dialog, int id) {
             Object checkedItem = cities.toArray()[id].toString().toLowerCase();
             Toast.makeText(getApplicationContext(), "some action!" + checkedItem, Toast.LENGTH_LONG).show();
-            Uri wikiUri = Uri.parse("http://api.geonames.org/wikipediaSearch?q=" + checkedItem + "&maxRows=10&username=demo");
+            Uri wikiUri = Uri.parse("http://api.geonames.org//wikipediaSearchJSON?q=" + checkedItem + "&maxRows=10&username=demo");
 
             Intent websiteIntent = new Intent(Intent.ACTION_VIEW, wikiUri);
             startActivity(websiteIntent);
