@@ -25,4 +25,4 @@ be patient
 Example of implementing:
 - parsing `JSON` via `HTTP`
 - showing result as `recycle view`
-- displaying `dialog` using 'ArrayList'
+- displaying `dialog` using `ArrayList`
