@@ -7,6 +7,10 @@ I have something for you, weirdo
 - import `wmappy/wmappy` folder via Android Studio (yes, second one)
 - run on the emulator or your device in the debug mode
 
+**or** download `.apk` from latest [release](https://github.com/goldenpears/wmappy/releases)
+
+**or** get it at [PlayStore](https://play.google.com/store/apps/details?id=com.locovna.wmappy) and become Alpha tester!
+
 ## this is how we do it
 
 - [x] ~~Download a list of countries and cities from [there](https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json)~~
