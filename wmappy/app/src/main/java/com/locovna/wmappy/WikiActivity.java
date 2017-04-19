@@ -13,8 +13,7 @@ import com.locovna.wmappy.model.City;
 public class WikiActivity extends AppCompatActivity {
   public static final String LOG_TAG = WikiActivity.class.getSimpleName();
   public static final String REQUEST_URL = "http://api.geonames.org//wikipediaSearchJSON?q=";
-  //  london&maxRows=10&username=demo
-
+  public static final String USERNAME = "wmappy";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class WikiActivity extends AppCompatActivity {
     citySummary.setText(city.getCitySummary());
 
     CityAsyncTask task = new CityAsyncTask();
-    task.execute(REQUEST_URL + currentCity + "&maxRows=10&username=demo");
+    task.execute(REQUEST_URL + currentCity + "&maxRows=10&username=" + USERNAME);
   }
 
   private class CityAsyncTask extends AsyncTask<String, Void, City> {
