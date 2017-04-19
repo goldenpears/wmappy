@@ -13,17 +13,19 @@ I have something for you, weirdo
 - [ ] Parse that list into a local database ~~(for now it parses and shows straight into recycle view, right after request via HTTP)~~
 - [ ] ~~Create a country selector (dropdown or picker)~~ which is populated from the local database.
 - [x] ~~Show a list of cities of the selected country.~~
-- [ ] Upon selecting a city from the list, fetch info about it and display it on a separate screen. For fetching city info use [Wikipedia search service](http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch)
+- [x] ~~Upon selecting a city from the list, fetch info about it and display it on a separate screen. For fetching city info use [Wikipedia search service](http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch)~~
 
 ## any third-party libraries and frameworks?
-not yet!
+[Picasso](http://square.github.io/picasso/) - for load image of `City` at `WikiActivity`. 
+
+Why: unfortunately, at native methods, it would be much junky, so we just use  single line of code for single and simple purpose for keep things clean and readable.
 
 ## screenshots
 ![screenshots](img/wmappy.png)
 `splash screen` ⭐️ 
-`main activity with countries` ⭐️ 
-`dialog with cities!` ⭐️ 
-and another one in process ⭐️ 
+`list of countries` ⭐️ 
+`dialog with cities` ⭐️ 
+`info about city and photo if exist` ⭐️ 
 
 ## formally it is
 Example of implementing:
@@ -31,3 +33,4 @@ Example of implementing:
 - showing result as `recycle view`
 - displaying `dialog` using `ArrayList`
 - and `explicit intent` to `Activity` with, again, parsed `JSON`
+- load image if exist, at `WikiActivity` via `Picasso`
