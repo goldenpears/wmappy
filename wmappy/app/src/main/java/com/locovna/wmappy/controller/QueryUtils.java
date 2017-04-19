@@ -201,7 +201,6 @@ public class QueryUtils {
       if (!obj.has("geonames")) {
         city.setCityName("Mystery town");
         city.setCitySummary("Something wrong with this city! Try another one");
-        city.setCityPhoto("photo?");
       } else {
         JSONArray array = obj.getJSONArray("geonames");
         JSONObject cityObj = array.getJSONObject(0);
@@ -220,9 +219,7 @@ public class QueryUtils {
           city.setCitySummary(citySummary);
         }
 
-        if (!cityObj.has("thumbnailImg")) {
-          city.setCityPhoto("photo?");
-        } else {
+        if (cityObj.has("thumbnailImg")) {
           String cityPhoto = cityObj.getString("thumbnailImg");
           city.setCityPhoto(cityPhoto);
         }

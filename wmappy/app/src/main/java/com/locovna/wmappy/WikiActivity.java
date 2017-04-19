@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.locovna.wmappy.controller.QueryUtils;
 import com.locovna.wmappy.model.City;
+import com.squareup.picasso.Picasso;
 
 public class WikiActivity extends AppCompatActivity {
   public static final String LOG_TAG = WikiActivity.class.getSimpleName();
@@ -60,6 +61,9 @@ public class WikiActivity extends AppCompatActivity {
         ImageView cityPhoto = (ImageView) findViewById(R.id.city_photo);
         cityName.setText(data.getCityName());
         citySummary.setText(data.getCitySummary());
+        if (data.getCityPhoto() != null) {
+          Picasso.with(getApplicationContext()).load(data.getCityPhoto()).into(cityPhoto);
+        }
       }
     }
   }
