@@ -3,6 +3,7 @@ package com.locovna.wmappy.controller;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.locovna.wmappy.model.City;
 import com.locovna.wmappy.model.Country;
 
 import org.json.JSONArray;
@@ -53,10 +54,29 @@ public class QueryUtils {
     }
 
     // Extract relevant fields from the JSON response and create a list of {@link Countries}s
-    List<Country> countries = extractDataFromJson(jsonResponse);
+    List<Country> countries = extractCountryDataFromJson(jsonResponse);
 
     // Return the list of {@link Countries}
     return countries;
+  }
+
+  public static City fetchCityData(String requestUrl) {
+    // Create URL object
+    URL url = createUrl(requestUrl);
+
+    // Perform HTTP request to the URL and receive a JSON response back
+    String jsonResponse = null;
+    try {
+      jsonResponse = makeHttpRequest(url);
+    } catch (IOException e) {
+      Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+    }
+
+    // Extract relevant fields from the JSON response and create a list of {@link Countries}s
+    City city = extractCityDataFromJson(jsonResponse);
+
+    // Return the list of {@link Countries}
+    return city;
   }
 
   private static URL createUrl(String stringUrl) {
@@ -132,7 +152,7 @@ public class QueryUtils {
   }
 
 
-  public static List<Country> extractDataFromJson(String countriesJson) {
+  public static List<Country> extractCountryDataFromJson(String countriesJson) {
     if (TextUtils.isEmpty(countriesJson)) {
       return null;
     }
@@ -145,7 +165,7 @@ public class QueryUtils {
       // parse every key in JSONObject
       Iterator<String> keys = obj.keys();
       while (keys.hasNext()) {
-        Log.v(LOG_TAG, "keys: " + keys);
+        //        Log.v(LOG_TAG, "keys: " + keys);
         String countryName = (String) keys.next();
         JSONArray cities = obj.getJSONArray(countryName);
 
@@ -160,18 +180,56 @@ public class QueryUtils {
 
         Country country = new Country(countryName, citiesArray);
         countries.add(country);
-        Log.v(LOG_TAG, country.getCountry() + country.getCities());
+        // Log.v(LOG_TAG, country.getCountry() + country.getCities());
       }
 
-    } catch (
-        JSONException e)
-
-    {
+    } catch (JSONException e) {
       Log.e(LOG_TAG, "Problem parsing the countries JSON results", e);
     }
-
     return countries;
   }
+
+  public static City extractCityDataFromJson(String cityJSON) {
+    if (TextUtils.isEmpty(cityJSON)) {
+      return null;
+    }
+    City city = new City();
+
+    try {
+      JSONObject obj = new JSONObject(cityJSON);
+
+      if (!obj.has("geonames")) {
+        city.setCityName("Mystery town");
+        city.setCitySummary("Something wrong with this city! Try another one");
+      } else {
+        JSONArray array = obj.getJSONArray("geonames");
+        JSONObject cityObj = array.getJSONObject(0);
+
+        if (!cityObj.has("title")) {
+          city.setCityName("Mystery town");
+          city.setCitySummary("There is no summary for this mysterious town");
+        } else {
+          String cityName = cityObj.getString("title");
+          city.setCityName(cityName);
+        }
+        if (!cityObj.has("summary")) {
+          city.setCitySummary("There is no summary for this mysterious town");
+        } else {
+          String citySummary = cityObj.getString("summary");
+          city.setCitySummary(citySummary);
+        }
+
+        if (cityObj.has("thumbnailImg")) {
+          String cityPhoto = cityObj.getString("thumbnailImg");
+          city.setCityPhoto(cityPhoto);
+        }
+      }
+
+      Log.v(LOG_TAG, "city is " + city.getCityName() + city.getCitySummary() + city.getCityPhoto());
+    } catch (JSONException e) {
+      Log.e(LOG_TAG, "Problem parsing the countries JSON results", e);
+
+    }
+    return city;
+  }
 }
-
-

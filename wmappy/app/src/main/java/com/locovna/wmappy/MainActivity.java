@@ -3,7 +3,6 @@ package com.locovna.wmappy;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -58,12 +57,16 @@ public class MainActivity extends AppCompatActivity {
         .setAdapter(adapter, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int id) {
-            Object checkedItem = cities.toArray()[id].toString().toLowerCase();
-            Toast.makeText(getApplicationContext(), "some action!" + checkedItem, Toast.LENGTH_LONG).show();
-            Uri wikiUri = Uri.parse("http://api.geonames.org//wikipediaSearchJSON?q=" + checkedItem + "&maxRows=10&username=demo");
+            Object currentCity = cities.toArray()[id].toString();
+            Toast.makeText(getApplicationContext(), "we are going to " + currentCity + "!", Toast.LENGTH_SHORT).show();
+            //            Uri wikiUri = Uri.parse("http://api.geonames.org//wikipediaSearchJSON?q=" + currentCity + "&maxRows=10&username=demo");
+            //
+            //            Intent websiteIntent = new Intent(Intent.ACTION_VIEW, wikiUri);
+            //            startActivity(websiteIntent);
 
-            Intent websiteIntent = new Intent(Intent.ACTION_VIEW, wikiUri);
-            startActivity(websiteIntent);
+            Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+            intent.putExtra("Current city", currentCity.toString().toLowerCase());
+            startActivity(intent);
           }
         });
     AlertDialog dialog = builder.create();
