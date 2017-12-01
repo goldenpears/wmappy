@@ -2,6 +2,8 @@
 Do you ever wonder how list of all countries and cities looks like? Or maybe you wish wikipedia was only for such purpose?  
 I have something for you, weirdo
 
+_created for educational purpose_
+
 ## how to start?
 - `git clone https://github.com/goldenpears/wmappy.git`
 - import `wmappy/wmappy` folder via Android Studio (yes, second one)
